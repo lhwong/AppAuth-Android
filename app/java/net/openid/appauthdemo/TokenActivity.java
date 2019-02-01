@@ -36,6 +36,7 @@ import net.openid.appauth.AuthorizationResponse;
 import net.openid.appauth.AuthorizationService;
 import net.openid.appauth.AuthorizationServiceDiscovery;
 import net.openid.appauth.ClientAuthentication;
+import net.openid.appauth.ClientSecretBasic;
 import net.openid.appauth.TokenRequest;
 import net.openid.appauth.TokenResponse;
 
@@ -281,14 +282,15 @@ public class TokenActivity extends AppCompatActivity {
             TokenRequest request,
             AuthorizationService.TokenResponseCallback callback) {
         ClientAuthentication clientAuthentication;
-        try {
+        clientAuthentication = new ClientSecretBasic("password");
+        /*try {
             clientAuthentication = mStateManager.getCurrent().getClientAuthentication();
         } catch (ClientAuthentication.UnsupportedAuthenticationMethod ex) {
             Log.d(TAG, "Token request cannot be made, client authentication for the token "
                             + "endpoint could not be constructed (%s)", ex);
             displayNotAuthorized("Client authentication method is unsupported");
             return;
-        }
+        }*/
 
         mAuthService.performTokenRequest(
                 request,
@@ -368,6 +370,7 @@ public class TokenActivity extends AppCompatActivity {
                 conn.setInstanceFollowRedirects(false);
                 String response = Okio.buffer(Okio.source(conn.getInputStream()))
                         .readString(Charset.forName("UTF-8"));
+                Log.e(TAG, response);
                 mUserInfoJson.set(new JSONObject(response));
             } catch (IOException ioEx) {
                 Log.e(TAG, "Network error when querying userinfo endpoint", ioEx);

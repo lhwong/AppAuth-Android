@@ -1,11 +1,12 @@
 {
-  "client_id": "",
+  "client_id": "acme",
   "redirect_uri": "net.openid.appauthdemo:/oauth2redirect",
-  "authorization_scope": "openid email profile",
+  "authorization_scope": "user",
   "discovery_uri": "",
-  "authorization_endpoint_uri": "",
-  "token_endpoint_uri": "",
+  "authorization_endpoint_uri": "http://47.254.193.167:9999/uaa/oauth/authorize",
+  "token_endpoint_uri": "http://47.254.193.167:9999/uaa/oauth/token",
   "registration_endpoint_uri": "",
-  "user_info_endpoint_uri": "",
-  "https_required": true
+  "user_info_endpoint_uri": "http://47.254.193.167:9999/uaa/me",
+  "https_required": false
 }
+
